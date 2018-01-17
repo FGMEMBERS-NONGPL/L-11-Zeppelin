@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+
+  L-11 Zeppelin engine flight model for JSBSim.
+
+    Copyright (C) 2007 - 2009 Anders Gidenstam  (anders(at)gidenstam.org)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  
+-->
+<!--
+
+       Engine data from Wikipedia:https://en.wikipedia.org/wiki/Maybach_Mb.IVa
+General characteristics
+
+    Type: 6-cylinder inline liquid-cooled aircraft engine
+    Bore: 165 mm (6.6 in)
+    Stroke: 180 mm (7.2 in)
+    Displacement: 23.096 l
+    Dry weight: 400 kg (881 lb) (later variant with aluminium pistons 390 kg (859 lb))
+    Designer: Karl Maybach
+
+Components
+
+    Cooling system: water-cooled
+
+Performance
+
+    Power output: 245 hp
+    Compression ratio: 6.08:1
+    Specific fuel consumption: 200g/PS/h
+
+
+  References :
+  ==========
+
+  - Eugen Bentele, "The Story of a Zeppelin Mechanic",
+    Zeppelin-Museum Friedrichshafen, 1992.
+
+  - Harold G. Dick and Douglas H. Robinson,
+    "The Golden Age of the Great Passenger Airships",
+    Simthsonian Institution Press, 1985.
+-->
+
+<piston_engine name="Maybach_mb_IVa">
+
+ <displacement unit="LTR">   23.096.0 </displacement>
+ <bore unit="M">            0.165 </bore>
+ <stroke unit="M">          0.180 </stroke>
+ <compression-ratio>         5.8 </compression-ratio> 
+ <cylinders>                 6.0 </cylinders>
+ <cycles>                    4.00 </cycles>
+
+ <minmp unit="INHG">          9.5 </minmp> 
+ <maxmp unit="INHG">         27.9 </maxmp>
+
+ <maxhp>                  350.00 </maxhp>
+
+ <idlerpm>                 200.00 </idlerpm>
+ <maxrpm>                 1500.00 </maxrpm>
+
+ <bsfc unit="LBS/HP*HR">     0.47 </bsfc>
+ <volumetric_efficiency>  0.57        </volumetric_efficiency>
+ <sparkfaildrop>             0.10 </sparkfaildrop> 
+
+ <minthrottle> 0.1 </minthrottle>
+ <maxthrottle> 1.0 </maxthrottle>
+
+</piston_engine>

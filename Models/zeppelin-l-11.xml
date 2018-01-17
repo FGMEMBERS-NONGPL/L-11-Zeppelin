@@ -1,0 +1,492 @@
+<?xml version="1.0"?>
+<!--
+  Zeppelin L-11 German Naval airship for FlightGear.
+
+  Copyright (C) 2010 - 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<PropertyList>
+
+ <path>zepp-model.ac</path>
+ <offsets>
+  <!-- x/y/z == back/right/up -->
+  <x-m> 0.0 </x-m>
+  <y-m> 0.0 </y-m>
+  <z-m> 0.0 </z-m>
+ </offsets>
+
+ <!-- Rembrandt transparency markup. -->
+ <effect>
+  <inherits-from>Effects/model-transparent</inherits-from>
+  <object-name>ccar_windows.F</object-name>
+  <object-name>ccar_windows.L</object-name>
+  <object-name>ccar_windows.R</object-name>
+  <object-name>cabin_windows.L</object-name>
+  <object-name>cabin_windows.R</object-name>
+  <!-- object-name>hull_cover</object-name --> <!-- Keep opaque for now. -->
+  <object-name>cell.1</object-name>
+  <object-name>cell.2</object-name>
+  <object-name>cell.3</object-name>
+  <object-name>cell.4</object-name>
+  <object-name>cell.5</object-name>
+  <object-name>cell.6</object-name>
+  <object-name>cell.7</object-name>
+  <object-name>cell.8</object-name>
+  <object-name>cell.9</object-name>
+  <object-name>cell.10</object-name>
+  <object-name>cell.11</object-name>
+  <object-name>cell.12</object-name>
+  <object-name>cell.13</object-name>
+ </effect>
+
+ <!-- <model>
+  <name>Control car interior</name>
+  <path>Aircraft/L-11-Zeppelin/Models/Panel/panel.xml</path>
+  <offsets>
+  
+   <x-m> 0.00 </x-m>
+   <y-m> 0.00 </y-m>
+   <z-m> 0.00 </z-m>
+  </offsets>
+ </model> -->
+
+   <!-- Pushback -->
+  <model>
+    <name>Pushback</name>
+    <path>Aircraft/L-11-Zeppelin/Models/Pushback/Zepp_lighter.xml</path>
+    <condition>
+      <less-than-equals>
+	<property>velocities/airspeed-kt</property>
+	<value>30</value>
+      </less-than-equals>
+    </condition>
+    <offsets>
+      <x-m>-46.20</x-m>
+      <y-m>0</y-m>
+      <z-m>-14.87</z-m>
+    </offsets>
+  </model>
+
+<!-- elevator and rudder cabin control wheels -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>ruddwheel</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>-850.0</factor>
+  <center>
+   <x-m>  -42.8591 </x-m>
+   <y-m>   0.2821 </y-m>
+   <z-m>  -12.2794 </z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>elevatorwheel</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <factor>-850.0</factor>
+  <center>
+   <x-m>  -42.0599 </x-m>
+   <y-m>  -0.7573 </y-m>
+   <z-m>  -12.287 </z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ 
+<!-- prop - animations -->
+
+   <!-- forward-propeller --> 
+  <animation>
+    <name>propeller1</name>
+    <object-name>propdisc1</object-name>
+    <object-name>propblur1</object-name>
+    <object-name>Prop1</object-name>
+    <object-name>bol1</object-name>
+  </animation>
+  
+
+  <animation>
+    <type>select</type>
+    <object-name>propdisc1</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value>600</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>propblur1</object-name>
+    <condition>
+    <and>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value>300.000</value>
+      </greater-than>
+      <less-than>
+        <property>engines/engine[0]/rpm</property>
+        <value>600.001</value>
+      </less-than>
+    </and>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>Prop1</object-name>
+    <condition>
+      <less-than>
+        <property>engines/engine[0]/rpm</property>
+	<value>600</value>
+      </less-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>propeller1</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value> 5 </value>
+      </greater-than>
+    </condition>
+    <property>engines/engine[0]/rpm</property>
+    <factor> 0.78 </factor>
+    <center>
+      <x-m> -29.1541 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  -12.7687 </z-m>
+    </center>
+    <axis>
+      <x> -1 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+  
+     <!-- rear-propeller --> 
+  <animation>
+    <name>propeller2</name>
+    <object-name>propdisc2</object-name>
+    <object-name>propblur2</object-name>
+    <object-name>Prop2</object-name>
+    <object-name>bol2</object-name>
+  </animation>
+  
+
+  <animation>
+    <type>select</type>
+    <object-name>propdisc2</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[1]/rpm</property>
+        <value>600</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>propblur2</object-name>
+    <condition>
+    <and>
+      <greater-than>
+        <property>engines/engine[1]/rpm</property>
+        <value>300.000</value>
+      </greater-than>
+      <less-than>
+        <property>engines/engine[1]/rpm</property>
+        <value>600.001</value>
+      </less-than>
+    </and>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>Prop2</object-name>
+    <condition>
+      <less-than>
+        <property>engines/engine[1]/rpm</property>
+	<value>600</value>
+      </less-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>propeller2</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[1]/rpm</property>
+        <value> 5 </value>
+      </greater-than>
+    </condition>
+    <property>engines/engine[1]/rpm</property>
+    <factor> 0.78 </factor>
+    <center>
+      <x-m> 39.2506 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  -12.9032 </z-m>
+    </center>
+    <axis>
+      <x> -1 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+  
+     <!-- left-propeller --> 
+  <animation>
+    <name>propeller3</name>
+    <object-name>propdisc3</object-name>
+    <object-name>propblur3</object-name>
+    <object-name>Prop3</object-name>
+    <object-name>bol3</object-name>
+  </animation>
+  
+
+  <animation>
+    <type>select</type>
+    <object-name>propdisc3</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[2]/rpm</property>
+        <value>600</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>propblur3</object-name>
+    <condition>
+    <and>
+      <greater-than>
+        <property>engines/engine[2]/rpm</property>
+        <value>300.000</value>
+      </greater-than>
+      <less-than>
+        <property>engines/engine[2]/rpm</property>
+        <value>600.001</value>
+      </less-than>
+    </and>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>Prop3</object-name>
+    <condition>
+      <less-than>
+        <property>engines/engine[2]/rpm</property>
+	<value>600</value>
+      </less-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>propeller3</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[2]/rpm</property>
+        <value> 5 </value>
+      </greater-than>
+    </condition>
+    <property>engines/engine[2]/rpm</property>
+    <factor> 0.78 </factor>
+    <center>
+      <x-m> -29.8331 </x-m>
+      <y-m>  -10.2702 </y-m>
+      <z-m>  -6.9199 </z-m>
+    </center>
+    <axis>
+      <x> -1 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+  
+     <!-- rear-propeller --> 
+  <animation>
+    <name>propeller4</name>
+    <object-name>propdisc4</object-name>
+    <object-name>propblur4</object-name>
+    <object-name>Prop4</object-name>
+    <object-name>bol4</object-name>
+  </animation>
+  
+
+  <animation>
+    <type>select</type>
+    <object-name>propdisc4</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[3]/rpm</property>
+        <value>600</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>propblur4</object-name>
+    <condition>
+    <and>
+      <greater-than>
+        <property>engines/engine[3]/rpm</property>
+        <value>300.000</value>
+      </greater-than>
+      <less-than>
+        <property>engines/engine[3]/rpm</property>
+        <value>600.001</value>
+      </less-than>
+    </and>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>Prop4</object-name>
+    <condition>
+      <less-than>
+        <property>engines/engine[3]/rpm</property>
+	<value>600</value>
+      </less-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>propeller4</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[3]/rpm</property>
+        <value> 5 </value>
+      </greater-than>
+    </condition>
+    <property>engines/engine[3]/rpm</property>
+    <factor> 0.78 </factor>
+    <center>
+      <x-m> -29.8331 </x-m>
+      <y-m>  10.2706 </y-m>
+      <z-m>  -6.9199 </z-m>
+    </center>
+    <axis>
+      <x> -1 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+ <!-- Control surface animations ===========================================-->
+ <animation>
+  <type>rotate</type>
+  <object-name>rudder</object-name>
+  <object-name>rudder2</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>20</factor>
+    <center>
+      <x-m> 84.4501 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  0.0 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y>  0.0 </y>
+      <z>  1.0 </z>
+    </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>elevatorR</object-name>
+  <object-name>elevatorL</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <factor>20</factor>
+    <center>
+      <x-m> 85.0437 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m> 0.00 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y>  1.0 </y>
+      <z>  0.0 </z>
+    </axis>
+ </animation>
+
+
+
+ <!-- LOD for the model as a whole =========================================-->
+ <animation>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>29000</max-m>
+ </animation>
+
+    <!-- observer/gun animation -->
+  <animation>
+    <name>observerturret</name>
+    <object-name>gunUBK</object-name>
+    <object-name>drum</object-name>
+    <object-name>para-mount</object-name>
+  </animation>
+
+  <animation>
+    <name>observerturretgun</name>
+    <object-name>gunUBK</object-name>
+    <object-name>drum</object-name>
+  </animation>
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>observerturret</object-name>
+    <property>sim/model/turret[0]/heading</property>
+    <offset-deg>180</offset-deg>
+    <center>
+      <x-m>  -43.972 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  10.372 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> -1 </z>
+    </axis>
+  </animation>
+  
+    <animation>
+    <type>rotate</type>
+    <object-name>observerturretgun</object-name>
+    <property>sim/model/turret[0]/pitch</property>
+    <factor>1</factor>
+    <offset-deg>0</offset-deg>
+    <center>
+      <x-m>  -43.972 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  10.372 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> -1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+</PropertyList>
